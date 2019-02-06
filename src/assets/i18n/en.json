@@ -1,0 +1,18 @@
+{
+  "views": {
+    "login": {
+      "content": {
+        "introduction": "YaCoVi stands for \"<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>sion\" and is a small app to experiment with cloud-based Computer Vision API's (<a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>).",
+        "description": "<b>Who is Yannick?</b><br/>Yannick is one of our working students and the reason why we started this project. He is also the main person responsible for the small project."
+      },
+      "buttons": {
+        "kionLogin": "Login with KION E-Mail"
+      }
+    },
+    "home": {
+      "buttons": {
+        "signOut": "Sign out"
+      }
+    }
+  }
+}
