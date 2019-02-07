@@ -1,6 +1,8 @@
   <h1>YaCoVi</h1>
   <p>
-    <img src="https://travis-ci.com/KIDICA/yacovi-web.svg?branch=master" alt="TravisCi Build Status" />
+    <a href="https://travis-ci.com/KIDICA/yacovi-web" name="YaCoVi Web Builds" target="_blank">
+      <img src="https://travis-ci.com/KIDICA/yacovi-web.svg?branch=master" alt="TravisCi Build Status" />
+    </a>
   </p>
   <p>
     "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
