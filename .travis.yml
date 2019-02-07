@@ -16,7 +16,7 @@ install:
   - npm install
 
 script:
-  - npm run lint
+  # - npm run lint
   - ng build --prod --base-href /yacovi-web/
   - mv dist/yacovi-web/index.html dist/yacovi-web/404.html
 deploy:
