@@ -1,7 +1,6 @@
-﻿<yacovi-header></yacovi-header>
-<!-- main app container -->
+﻿<app-yacovi-header></app-yacovi-header>
 <div class="col-sm-6 offset-sm-3">
-  <yacovi-alert></yacovi-alert>
+  <app-yacovi-alert></app-yacovi-alert>
 </div>
 <ngx-spinner
   bdOpacity = 0.9
@@ -12,5 +11,6 @@
   fullScreen = "true">
   <p> Initializing services and camera ... </p>
 </ngx-spinner>
+<!-- main app container -->
 <router-outlet></router-outlet>
-<yacovi-footer></yacovi-footer>
+<app-yacovi-footer></app-yacovi-footer>

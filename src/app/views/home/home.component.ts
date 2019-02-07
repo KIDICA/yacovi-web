@@ -1,8 +1,8 @@
 ﻿import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {YacoviAlertService, ConfigService} from '@app/services';
-import {RTCService} from "@app/services/rtc.service";
-import {NgxSpinnerService} from "ngx-spinner";
-import {forkJoin, Observable} from "rxjs";
+import {RTCService} from '@app/services/rtc.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {forkJoin, Observable} from 'rxjs';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     forkJoin([this.configService.getConfig(), this.initCameraStream()])
     .subscribe(value => {
       this.hideSpinnerWithDelay(500)
-      .finally(() => this.alertService.success("Application successfully initialized!"));
+      .finally(() => this.alertService.success('Application successfully initialized!'));
     }, error => {
       this.alertService.error(error);
       this.spinner.hide();
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   initCameraStream() {
     this.rtcService.stopAllCurrentlyRunningStreams(this.videoElm);
     return Observable.create((observable) => {
-      let constraints = {
+      const constraints = {
         audio: false,
         video: {}
       };
@@ -45,18 +45,17 @@ export class HomeComponent implements OnInit {
         observable.next(true);
         observable.complete();
       }).catch((error) => {
-        //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-        if(error === 'PermissionDeniedError') {
-          observable.error("Permission denied. Please refresh and give permission.");
+        // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+        if (error === 'PermissionDeniedError') {
+          observable.error('Permission denied. Please refresh and give permission.');
         }
         observable.error(error);
       });
     });
-
   }
 
   async hideSpinnerWithDelay(ms: number) {
-    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>this.spinner.hide());
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.spinner.hide());
   }
 
 }

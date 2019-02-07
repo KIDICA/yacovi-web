@@ -2,7 +2,7 @@
 
 import { HomeComponent } from './views/home';
 import { LoginComponent } from './views/login';
-import {CustomAdalGuard} from "@app/core/guards/customAdal.guard";
+import {CustomAdalGuard} from '@app/core/guards/customAdal.guard';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [CustomAdalGuard] },

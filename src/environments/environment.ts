@@ -13,7 +13,7 @@ export const environment = {
       tenant: '13c728e0-bb0c-4cf7-8e10-5b327279d6d9',
       clientId: '9046ce57-3082-4d8b-bec4-3b76ac73f4bc',
       redirectUri: 'http://localhost:4200/',
-      endpoints: ["https://vault.azure.net"]
+      endpoints: ['https://vault.azure.net']
     }
   }
 };

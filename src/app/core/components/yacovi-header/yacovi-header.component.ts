@@ -1,9 +1,8 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {CustomAdalService} from '@app/services';
-import {RTCService} from "@app/services/rtc.service";
 
 @Component({
-  selector: 'yacovi-header',
+  selector: 'app-yacovi-header',
   templateUrl: 'yacovi-header.component.html',
   styleUrls: ['yacovi-header.component.css']
 })

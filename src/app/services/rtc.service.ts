@@ -1,7 +1,7 @@
 ﻿import {ElementRef, Injectable} from '@angular/core';
 
-import {environment} from "@environments/environment";
-import {YacoviAlertService} from "@app/core/modules/yacovi-alert/yacovi-alert.service";
+import {environment} from '@environments/environment';
+import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
 
 @Injectable({providedIn: 'root'})
 export class RTCService {
@@ -11,17 +11,17 @@ export class RTCService {
   constructor(private alertService: YacoviAlertService) {
     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
-
       // do some checks
-      if (this.DetectRTC.isWebRTCSupported == false) {
+      if (this.DetectRTC.isWebRTCSupported === false) {
         this.alertService.error('Please use Chrome, Firefox, iOS 11, Android 5 or higher, Safari 11 or higher');
       } else {
-        if (this.DetectRTC.hasWebcam == false) {
+        if (this.DetectRTC.hasWebcam === false) {
           this.alertService.error('Please install an external webcam device.');
         }
       }
-      environment.production || this.logRTCStatus();
-
+      if (!environment.production) {
+        this.logRTCStatus();
+      }
     });
   }
 
@@ -38,17 +38,17 @@ export class RTCService {
   }
 
   takeSnapshot(videoElem: ElementRef) {
-    let video = videoElem.nativeElement;
+    const video = videoElem.nativeElement;
     // if you'd like to show the canvas add it to the DOM
-    let canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas');
 
-    let width = video.videoWidth;
-    let height = video.videoHeight;
+    const width = video.videoWidth;
+    const height = video.videoHeight;
 
     canvas.width = width;
     canvas.height = height;
 
-    let context = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(function (blob) {
@@ -59,13 +59,13 @@ export class RTCService {
   private getCanvasBlob(canvas) {
     return new Promise(function (resolve, reject) {
       canvas.toBlob(function (blob) {
-        resolve(blob)
+        resolve(blob);
       }, 'image/jpeg');
-    })
+    });
   }
 
   private logRTCStatus() {
-    console.log(`RTC Debug info: 
+    console.log(`RTC Debug info:
  OS:                   ${this.DetectRTC.osName} ${this.DetectRTC.osVersion}
  browser:              ${this.DetectRTC.browser.fullVersion} ${this.DetectRTC.browser.name}
  is Mobile Device:     ${this.DetectRTC.isMobileDevice}

@@ -1,7 +1,7 @@
 ﻿import {Component} from '@angular/core';
 
 @Component({
-  selector: 'yacovi-footer',
+  selector: 'app-yacovi-footer',
   templateUrl: 'yacovi-footer.component.html',
   styleUrls: ['yacovi-footer.component.css']
 })

@@ -9,11 +9,11 @@ import {YacoviFooterComponent, YacoviHeaderComponent} from './core/components';
 import {HomeComponent} from './views/home';
 import {LoginComponent} from './views/login';
 
-import {CustomAdalGuard} from "@app/core/guards/customAdal.guard";
-import {ConfigService, CustomAdalService} from "@app/services";
-import {CustomAdalInterceptor} from "@app/core/interceptor/customAdal.interceptor";
-import {NgxSpinnerModule} from "ngx-spinner";
-import {YacoviAlertModule} from "@app/core/modules";
+import {CustomAdalGuard} from '@app/core/guards/customAdal.guard';
+import {ConfigService, CustomAdalService} from '@app/services';
+import {CustomAdalInterceptor} from '@app/core/interceptor/customAdal.interceptor';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {YacoviAlertModule} from '@app/core/modules';
 
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';

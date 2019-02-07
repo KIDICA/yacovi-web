@@ -1,9 +1,9 @@
-import {AdalGuard} from "adal-angular4";
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
-import {Observable} from "rxjs";
+import {AdalGuard} from 'adal-angular4';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
 import { environment } from '@environments/environment';
-import {Injectable} from "@angular/core";
-import {CustomAdalService} from "@app/services";
+import {Injectable} from '@angular/core';
+import {CustomAdalService} from '@app/services';
 
 @Injectable()
 export class CustomAdalGuard extends AdalGuard {

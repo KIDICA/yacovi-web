@@ -2,10 +2,10 @@
 import { Subscription } from 'rxjs';
 
 import { YacoviAlertService } from '../../../services';
-import {YaCoviAlertTypesAware} from "src/app/core/modules/yacovi-alert/yacovi-alert.enum";
+import {YaCoviAlertTypesAware} from 'src/app/core/modules/yacovi-alert/yacovi-alert.enum';
 
 @Component({
-    selector: 'yacovi-alert',
+    selector: 'app-yacovi-alert',
     templateUrl: 'yacovi-alert.component.html',
     styleUrls: ['yacovi-alert.component.css']
 })
@@ -17,8 +17,8 @@ export class YacoviAlertComponent implements OnInit, OnDestroy {
     constructor(private alertService: YacoviAlertService) { }
 
     ngOnInit() {
-        this.subscription = this.alertService.getMessage().subscribe(message => { 
-            this.message = message; 
+        this.subscription = this.alertService.getMessage().subscribe(message => {
+            this.message = message;
         });
     }
 

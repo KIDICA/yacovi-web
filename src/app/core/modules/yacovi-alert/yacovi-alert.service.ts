@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import {YACOVI_ALERT_TYPES} from "src/app/core/modules/yacovi-alert/yacovi-alert.enum";
+import {YACOVI_ALERT_TYPES} from 'src/app/core/modules/yacovi-alert/yacovi-alert.enum';
 
 @Injectable({ providedIn: 'root' })
 export class YacoviAlertService {
@@ -24,27 +24,27 @@ export class YacoviAlertService {
     }
 
     async success(message: string, messageDuratinMs = 3000) {
-      await this.showMessage(message, YACOVI_ALERT_TYPES.SUCCESS, messageDuratinMs)
+      await this.showMessage(message, YACOVI_ALERT_TYPES.SUCCESS, messageDuratinMs);
     }
 
     async error(message: string, messageDuratinMs = 3000) {
-        await this.showMessage(message, YACOVI_ALERT_TYPES.ERROR, messageDuratinMs)
+        await this.showMessage(message, YACOVI_ALERT_TYPES.ERROR, messageDuratinMs);
     }
 
   private async showMessage(message: string, messageType = YACOVI_ALERT_TYPES.ERROR, messageDuratinMs = 3000) {
       this.keepAfterNavigationChange = messageDuratinMs === 0;
       this.subject.next({ type: messageType, text: message });
 
-      if(!this.keepAfterNavigationChange) {
-        await new Promise(resolve => setTimeout(()=>resolve(), messageDuratinMs)).then(()=>this.reset());
+      if (!this.keepAfterNavigationChange) {
+        await new Promise(resolve => setTimeout(() => resolve(), messageDuratinMs)).then(() => this.reset());
       }
-    }
+  }
 
   reset() {
     this.subject.next();
   }
 
-    getMessage(): Observable<any> {
+  getMessage(): Observable<any> {
         return this.subject.asObservable();
-    }
+  }
 }
