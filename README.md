@@ -1,9 +1,9 @@
-  <h3>YaCoVi</h3>
+  <h1>YaCoVi</h1>
   <p>
     "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
     <br>
     <br>
-    <a href="https://">LIVE DEMO</a>
+    <a href="https://kidica.github.io/yacovi-web" target="_blank">LIVE DEMO</a>
     <br>
     <a href="https://github.com/KIDICA/yacovi-web/issues/new">Report bug</a>
     <br>
@@ -30,7 +30,7 @@
 
 2. Launch development server:
  ```bash
- npm start
+ npm run start
  ```
 
 ## What's included
@@ -44,7 +44,7 @@
 Tasks                    | Description
 -------------------------|---------------------------------------------------------------------------------------
 npm install              | Install dependencies
-npm start                | Start the app in development mode
+npm run start                | Start the app in development mode
 npm run test             | Run unit tests with karma and jasmine
 npm run e2e              | Run end to end tests with protractor
 npm run build            | Build the app for production
