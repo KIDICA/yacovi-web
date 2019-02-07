@@ -1,5 +1,8 @@
   <h1>YaCoVi</h1>
   <p>
+    <img src="https://travis-ci.com/KIDICA/yacovi-web.svg?branch=master" alt="TravisCi Build Status" />
+  </p>
+  <p>
     "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
     <br>
     <br>
@@ -32,7 +35,7 @@
  ```bash
  npm run start
  ```
-
+ 
 ## What's included
 
 + Authentication with KION Azure AD

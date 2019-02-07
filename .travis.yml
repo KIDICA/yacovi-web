@@ -1,22 +1,16 @@
 language: node_js
 node_js:
   - "9"
-dist: trusty
-sudo: false
 
 branches:
-  only:
-    - master
-
-cache:
-  directories:
-    - node_modules
+  except:
+    - gh-pages # will be deployed to, no need to build it
 
 install:
   - npm install
 
 script:
-  # - npm run lint
+  - npm run lint
   - ng build --prod --base-href /yacovi-web/
   - mv dist/yacovi-web/index.html dist/yacovi-web/404.html
 deploy:
