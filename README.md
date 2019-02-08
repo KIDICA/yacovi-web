@@ -49,7 +49,7 @@
 Tasks                    | Description
 -------------------------|---------------------------------------------------------------------------------------
 npm install              | Install dependencies
-npm run start                | Start the app in development mode
+npm run start            | Start the app in development mode
 npm run test             | Run unit tests with karma and jasmine
 npm run e2e              | Run end to end tests with protractor
 npm run build            | Build the app for production
@@ -66,4 +66,3 @@ We use Travis CI to run this tasks in order:
 ## Copyright and license
 
 Code and documentation copyright 2018 the authors. Code released under the [MIT License](https://github.com/KIDICA/yacovi-web/blob/master/LICENSE).
-
