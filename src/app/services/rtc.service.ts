@@ -1,9 +1,5 @@
 ﻿import {ElementRef, Injectable} from '@angular/core';
 
-<<<<<<< Updated upstream
-import {environment} from '@environments/environment';
-import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
-=======
 import {environment} from "@environments/environment";
 import {YacoviAlertService} from "@app/core/modules/yacovi-alert/yacovi-alert.service";
 import { ConfigService } from './config.service';
@@ -11,7 +7,7 @@ import { config } from 'rxjs';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 import { constructDependencies } from '@angular/core/src/di/reflective_provider';
->>>>>>> Stashed changes
+
 
 @Injectable({providedIn: 'root'})
 export class RTCService {
@@ -63,14 +59,10 @@ export class RTCService {
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(function (blob) {
-      //!!!do something with the image
-    
-      
-      //replace by CanvasPic
-      var sourceImageUrl = "http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg";
+      let sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
 
-      //hier dann Bild übergeben!!!
-      //ConfigService.getResponseFromAPI(sourceImageUrl);
+      // hier dann Bild übergeben!!!
+      // ConfigService.getResponseFromAPI(sourceImageUrl);
       
     });
   }

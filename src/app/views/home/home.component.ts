@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit {
         this.configService.getResponseFromAPI(this.azureCognitiveServiceKey).subscribe(value => {
           console.log(JSON.stringify(value));
         });
-        this.alertService.success("Application successfully initialized!");
-      })
+        this.alertService.success('Application successfully initialized!');
+      });
     }, error => {
       this.alertService.error(error);
       this.spinner.hide();
