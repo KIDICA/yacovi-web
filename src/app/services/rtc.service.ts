@@ -63,7 +63,6 @@ export class RTCService {
 
       // hier dann Bild übergeben!!!
       // ConfigService.getResponseFromAPI(sourceImageUrl);
-      
     });
   }
 
