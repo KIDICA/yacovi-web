@@ -13,14 +13,14 @@ export class ConfigService {
     }
 
     getResponseFromAPI(accessKey: string) {
-        let uriBase = 'https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze';
-        let sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
-        let  headers = {
+        const uriBase = 'https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze';
+        const sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
+        const headers = {
             'Content-Type': 'application/json',
             'Ocp-Apim-Subscription-Key': accessKey
         };
 
-        let httpParams = new HttpParams().set('visualFeatures', 'Categories,Description,Color')
+        const httpParams = new HttpParams().set('visualFeatures', 'Categories,Description,Color')
                                        .set('language', 'en').set('details', '');
 
         return this.http.post(uriBase, {'url': sourceImageUrl}, {

@@ -30,8 +30,8 @@ export class HomeComponent implements OnInit {
       this.hideSpinnerWithDelay(500)
       .finally(() => {
         console.log(this.azureCognitiveServiceKey);
-        this.configService.getResponseFromAPI(this.azureCognitiveServiceKey).subscribe(value => {
-          console.log(JSON.stringify(value));
+        this.configService.getResponseFromAPI(this.azureCognitiveServiceKey).subscribe(requestvalue => {
+          console.log(JSON.stringify(requestvalue));
         });
         this.alertService.success('Application successfully initialized!');
       });

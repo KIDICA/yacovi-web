@@ -1,7 +1,7 @@
 ﻿import {ElementRef, Injectable} from '@angular/core';
 
-import {environment} from "@environments/environment";
-import {YacoviAlertService} from "@app/core/modules/yacovi-alert/yacovi-alert.service";
+import {environment} from '@environments/environment';
+import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
 import { ConfigService } from './config.service';
 import { config } from 'rxjs';
 import { HttpClient, HttpHandler } from '@angular/common/http';
@@ -59,7 +59,7 @@ export class RTCService {
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(function (blob) {
-      let sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
+      const sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
 
       // hier dann Bild übergeben!!!
       // ConfigService.getResponseFromAPI(sourceImageUrl);
