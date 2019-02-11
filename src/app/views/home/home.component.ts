@@ -11,6 +11,7 @@ import {forkJoin, Observable} from 'rxjs';
 export class HomeComponent implements OnInit {
 
   @ViewChild('video') videoElm: ElementRef;
+  private azureCognitiveServiceKey: string;
 
   constructor(
     private configService: ConfigService,
@@ -25,8 +26,15 @@ export class HomeComponent implements OnInit {
     this.spinner.show();
     forkJoin([this.configService.getConfig(), this.initCameraStream()])
     .subscribe(value => {
+      this.azureCognitiveServiceKey = value[0].cognitiveServiceApiKey;
       this.hideSpinnerWithDelay(500)
-      .finally(() => this.alertService.success('Application successfully initialized!'));
+      .finally(() => {
+        console.log(this.azureCognitiveServiceKey);
+        this.configService.getResponseFromAPI(this.azureCognitiveServiceKey).subscribe(value => {
+          console.log(JSON.stringify(value));
+        });
+        this.alertService.success("Application successfully initialized!");
+      })
     }, error => {
       this.alertService.error(error);
       this.spinner.hide();

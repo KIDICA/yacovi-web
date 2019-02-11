@@ -1,14 +1,24 @@
 ﻿import {ElementRef, Injectable} from '@angular/core';
 
+<<<<<<< Updated upstream
 import {environment} from '@environments/environment';
 import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
+=======
+import {environment} from "@environments/environment";
+import {YacoviAlertService} from "@app/core/modules/yacovi-alert/yacovi-alert.service";
+import { ConfigService } from './config.service';
+import { config } from 'rxjs';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
+>>>>>>> Stashed changes
 
 @Injectable({providedIn: 'root'})
 export class RTCService {
 
   private DetectRTC: any = window['DetectRTC'];
 
-  constructor(private alertService: YacoviAlertService) {
+  constructor(private configService: ConfigService, private alertService: YacoviAlertService) {
     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
       // do some checks
@@ -24,6 +34,7 @@ export class RTCService {
       }
     });
   }
+
 
   getNumberOfAvailableCameras() {
     return this.DetectRTC.videoInputDevices.length;
@@ -52,7 +63,15 @@ export class RTCService {
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(function (blob) {
-      // do something with the image blob
+      //!!!do something with the image
+    
+      
+      //replace by CanvasPic
+      var sourceImageUrl = "http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg";
+
+      //hier dann Bild übergeben!!!
+      //ConfigService.getResponseFromAPI(sourceImageUrl);
+      
     });
   }
 
