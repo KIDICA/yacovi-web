@@ -3,10 +3,7 @@
 import {environment} from '@environments/environment';
 import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
 import { ConfigService } from './config.service';
-import { config } from 'rxjs';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
-import { constructDependencies } from '@angular/core/src/di/reflective_provider';
+import { ImageAnalyzingService } from '@app/services/ImageAnalyzingService';
 
 
 @Injectable({providedIn: 'root'})
@@ -14,7 +11,7 @@ export class RTCService {
 
   private DetectRTC: any = window['DetectRTC'];
 
-  constructor(private configService: ConfigService, private alertService: YacoviAlertService) {
+  constructor(private configService: ConfigService, private imageAnalyzing: ImageAnalyzingService, private alertService: YacoviAlertService) {
     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
       // do some checks
@@ -58,12 +55,11 @@ export class RTCService {
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, width, height);
 
-    this.getCanvasBlob(canvas).then(function (blob) {
-      const sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
-
-      // hier dann Bild übergeben!!!
-      // ConfigService.getResponseFromAPI(sourceImageUrl);
-    });
+    this.getCanvasBlob(canvas).then(value => {
+      console.log(value);
+      //this.getCanvasBlob(canvas).then(function (blob) {
+      //this.imageAnalyzing.getResponseFromAPI(value);
+    })
   }
 
   private getCanvasBlob(canvas) {

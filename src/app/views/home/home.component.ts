@@ -2,7 +2,8 @@
 import {YacoviAlertService, ConfigService} from '@app/services';
 import {RTCService} from '@app/services/rtc.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {forkJoin, Observable} from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { ImageAnalyzingService } from '@app/services/ImageAnalyzingService';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -11,10 +12,10 @@ import {forkJoin, Observable} from 'rxjs';
 export class HomeComponent implements OnInit {
 
   @ViewChild('video') videoElm: ElementRef;
-  private azureCognitiveServiceKey: string;
 
   constructor(
     private configService: ConfigService,
+    private imageAnalyzing: ImageAnalyzingService,
     private alertService: YacoviAlertService,
     private rtcService: RTCService,
     private spinner: NgxSpinnerService
@@ -24,15 +25,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    forkJoin([this.configService.getConfig(), this.initCameraStream()])
+    console.log(this.configService.isConfigInitialized().subscribe((data) => console.log(data)));
+    forkJoin([this.configService.isConfigInitialized(), this.initCameraStream()])
     .subscribe(value => {
-      this.azureCognitiveServiceKey = value[0].cognitiveServiceApiKey;
-      this.hideSpinnerWithDelay(500)
+      this.hideSpinnerWithDelay(1000)
       .finally(() => {
-        console.log(this.azureCognitiveServiceKey);
-        this.configService.getResponseFromAPI(this.azureCognitiveServiceKey).subscribe(requestvalue => {
-          console.log(JSON.stringify(requestvalue));
-        });
+        this.rtcService.takeSnapshot(this.videoElm);
+        /*this.imageAnalyzing.getResponseFromAPI().subscribe(requestvalue => {
+        
+          //console.log(JSON.stringify(requestvalue));
+        });*/
         this.alertService.success('Application successfully initialized!');
       });
     }, error => {

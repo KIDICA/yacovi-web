@@ -14,6 +14,9 @@ export const environment = {
       clientId: '9046ce57-3082-4d8b-bec4-3b76ac73f4bc',
       redirectUri: 'http://localhost:4200/',
       endpoints: ['https://vault.azure.net']
+    },
+    cognitiveServices: {
+      APIurl: 'https://westeurope.api.cognitive.microsoft.com/vision/v2.0/analyze'
     }
   }
 };
