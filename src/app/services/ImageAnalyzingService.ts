@@ -3,36 +3,30 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { ConfigService } from './config.service';
 import { stringify } from '@angular/compiler/src/util';
+import { BlobToBase64 } from './BlobToBase64';
 
 @Injectable({ providedIn: 'root' })
 export class ImageAnalyzingService {
 
-    constructor(private configService: ConfigService, private http: HttpClient) {
+    constructor(private configService: ConfigService, private http: HttpClient, private blobtobase64: BlobToBase64) {
         http = configService.getHttpClient();
     }
 
     getResponseFromAPI(blobData) {
-        var myReader = new FileReader();
-        myReader.onload = function(event){
-            console.log(JSON.stringify(myReader.result));
-        };
-        myReader.readAsText(blobData);
+        console.log(blobData);
 
-
-
-
-
+        // create base64 value and send it to Azure API
+        const base64 = this.blobtobase64.makebaseString(blobData);
         const uriBase = environment.azure.cognitiveServices.APIurl;
-        const sourceImageUrl = 'http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg';
         const headers = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/octet-stream',
             'Ocp-Apim-Subscription-Key': stringify(this.configService.getAzCognitiveServiceKey)
         };
 
         const httpParams = new HttpParams().set('visualFeatures', 'Categories,Description,Color')
                                        .set('language', 'en').set('details', '');
 
-        return this.http.post(uriBase, {'url': sourceImageUrl}, {
+        return this.http.post(uriBase, {'url': base64, 'data': 'image/jpeg;base64'}, {
             'headers': new HttpHeaders(headers),
             'params': httpParams
         });

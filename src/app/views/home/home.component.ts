@@ -31,10 +31,6 @@ export class HomeComponent implements OnInit {
       this.hideSpinnerWithDelay(1000)
       .finally(() => {
         this.rtcService.takeSnapshot(this.videoElm);
-        /*this.imageAnalyzing.getResponseFromAPI().subscribe(requestvalue => {
-        
-          //console.log(JSON.stringify(requestvalue));
-        });*/
         this.alertService.success('Application successfully initialized!');
       });
     }, error => {

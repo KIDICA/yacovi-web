@@ -11,7 +11,8 @@ export class RTCService {
 
   private DetectRTC: any = window['DetectRTC'];
 
-  constructor(private configService: ConfigService, private imageAnalyzing: ImageAnalyzingService, private alertService: YacoviAlertService) {
+  constructor(private configService: ConfigService, private imageAnalyzing: ImageAnalyzingService,
+              private alertService: YacoviAlertService) {
     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
       // do some checks
@@ -56,10 +57,8 @@ export class RTCService {
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(value => {
-      console.log(value);
-      //this.getCanvasBlob(canvas).then(function (blob) {
-      //this.imageAnalyzing.getResponseFromAPI(value);
-    })
+      console.log(JSON.stringify(this.imageAnalyzing.getResponseFromAPI(value)));
+    });
   }
 
   private getCanvasBlob(canvas) {

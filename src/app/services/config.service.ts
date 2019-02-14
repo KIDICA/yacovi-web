@@ -17,8 +17,7 @@ export class ConfigService {
             this.subject.complete();
         }, error => {
             this.subject.error(error);
-            this.subject.complete();
-        }) 
+        });
     }
 
     isConfigInitialized(): AsyncSubject<ConfigService> {
@@ -32,5 +31,4 @@ export class ConfigService {
     getHttpClient(): HttpClient {
         return this.http;
     }
-
 }
