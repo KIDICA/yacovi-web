@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   disableAuthentication: false,
+  snapshotIntervalInSeconds: 5,
   config: {
     url: 'https://yacovi-config-service.azurewebsites.net/api/GetYaCoViConfig'
   },

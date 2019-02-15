@@ -2,14 +2,14 @@
 import { Subscription } from 'rxjs';
 
 import { YacoviAlertService } from '../../../services';
-import {YaCoviAlertTypesAware} from 'src/app/core/modules/yacovi-alert/yacovi-alert.enum';
+import {YaCoViAlertTypesAware} from 'src/app/core/modules/yacovi-alert/yacovi-alert.enum';
 
 @Component({
     selector: 'app-yacovi-alert',
     templateUrl: 'yacovi-alert.component.html',
     styleUrls: ['yacovi-alert.component.css']
 })
-@YaCoviAlertTypesAware
+@YaCoViAlertTypesAware
 export class YacoviAlertComponent implements OnInit, OnDestroy {
     private subscription: Subscription;
     message: any;

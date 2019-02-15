@@ -3,7 +3,7 @@
 import {environment} from '@environments/environment';
 import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
 import { ConfigService } from './config.service';
-import { ImageAnalyzingService } from '@app/services/ImageAnalyzingService';
+import { AzureVisionApiService } from '@app/services/azureVisionApi.service';
 
 
 @Injectable({providedIn: 'root'})
@@ -11,7 +11,7 @@ export class RTCService {
 
   private DetectRTC: any = window['DetectRTC'];
 
-  constructor(private configService: ConfigService, private imageAnalyzing: ImageAnalyzingService,
+  constructor(private configService: ConfigService, private imageAnalyzing: AzureVisionApiService,
               private alertService: YacoviAlertService) {
     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
@@ -57,7 +57,11 @@ export class RTCService {
     context.drawImage(video, 0, 0, width, height);
 
     this.getCanvasBlob(canvas).then(value => {
-      console.log(JSON.stringify(this.imageAnalyzing.getResponseFromAPI(value)));
+      console.log(value);
+      this.imageAnalyzing.detectFaces(value).subscribe(value1 => {
+        console.log(value1);
+
+      });
     });
   }
 

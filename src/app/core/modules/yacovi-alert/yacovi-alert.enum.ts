@@ -3,6 +3,6 @@ export const YACOVI_ALERT_TYPES = {
   'ERROR': 'error'
 };
 
-export function YaCoviAlertTypesAware(constructor: Function) {
+export function YaCoViAlertTypesAware(constructor: Function) {
   constructor.prototype.YACOVI_ALERT_TYPES = YACOVI_ALERT_TYPES;
 }

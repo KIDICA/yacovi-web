@@ -28,7 +28,4 @@ export class ConfigService {
         return this.azCognitiveServiceKey;
     }
 
-    getHttpClient(): HttpClient {
-        return this.http;
-    }
 }

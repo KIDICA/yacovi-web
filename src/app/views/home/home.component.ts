@@ -2,8 +2,9 @@
 import {YacoviAlertService, ConfigService} from '@app/services';
 import {RTCService} from '@app/services/rtc.service';
 import {NgxSpinnerService} from 'ngx-spinner';
-import { Observable, forkJoin } from 'rxjs';
-import { ImageAnalyzingService } from '@app/services/ImageAnalyzingService';
+import {Observable, forkJoin, interval} from 'rxjs';
+import { AzureVisionApiService } from '@app/services/azureVisionApi.service';
+import {environment} from '@environments/environment.prod';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private configService: ConfigService,
-    private imageAnalyzing: ImageAnalyzingService,
+    private imageAnalyzing: AzureVisionApiService,
     private alertService: YacoviAlertService,
     private rtcService: RTCService,
     private spinner: NgxSpinnerService
@@ -25,16 +26,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    console.log(this.configService.isConfigInitialized().subscribe((data) => console.log(data)));
     forkJoin([this.configService.isConfigInitialized(), this.initCameraStream()])
-    .subscribe(value => {
+    .subscribe(() => {
       this.hideSpinnerWithDelay(1000)
       .finally(() => {
-        this.rtcService.takeSnapshot(this.videoElm);
         this.alertService.success('Application successfully initialized!');
+        interval(environment.snapshotIntervalInSeconds * 1000).subscribe(() => this.rtcService.takeSnapshot(this.videoElm));
       });
     }, error => {
       this.alertService.error(error);
+      this.rtcService.stopAllCurrentlyRunningStreams(this.videoElm);
       this.spinner.hide();
     });
   }
