@@ -5,7 +5,7 @@
     </a>
   </p>
   <p>
-    "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
+    "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>sion" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
     <br>
     <br>
     <a href="https://kidica.github.io/yacovi-web" target="_blank">LIVE DEMO</a>
