@@ -13,6 +13,7 @@ import {environment} from '@environments/environment.prod';
 export class HomeComponent implements OnInit {
 
   @ViewChild('video') videoElm: ElementRef;
+  @ViewChild('editedCanvas') canvasElm: ElementRef;
 
   constructor(
     private configService: ConfigService,
@@ -31,7 +32,9 @@ export class HomeComponent implements OnInit {
       this.hideSpinnerWithDelay(1000)
       .finally(() => {
         this.alertService.success('Application successfully initialized!');
-        interval(environment.snapshotIntervalInSeconds * 1000).subscribe(() => this.rtcService.takeSnapshot(this.videoElm));
+        interval(environment.snapshotIntervalInSeconds * 1000).subscribe(() => {
+          this.rtcService.takeSnapshot(this.videoElm, this.canvasElm);
+        });
       });
     }, error => {
       this.alertService.error(error);

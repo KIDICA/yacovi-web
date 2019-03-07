@@ -42,9 +42,8 @@ export class RTCService {
     }
   }
 
-  takeSnapshot(videoElem: ElementRef) {
+  takeSnapshot(videoElem: ElementRef, canvasElem: ElementRef) {
     const video = videoElem.nativeElement;
-    // if you'd like to show the canvas add it to the DOM
     const canvas = document.createElement('canvas');
 
     const width = video.videoWidth;
@@ -56,11 +55,57 @@ export class RTCService {
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, width, height);
 
-    this.getCanvasBlob(canvas).then(value => {
-      console.log(value);
-      this.imageAnalyzing.detectFaces(value).subscribe(value1 => {
-        console.log(value1);
+    // TODO
+    canvasElem.nativeElement.width = width;
+    canvasElem.nativeElement.height = height;
+    const resultCanvas = canvasElem.nativeElement.getContext('2d');
+    resultCanvas.drawImage(video, 0, 0, width, height);
 
+    this.getCanvasBlob(canvas).then(sentPicture => {
+
+      this.imageAnalyzing.detectFaces(sentPicture).subscribe(APIresponse => {
+
+        console.log(APIresponse);
+        console.log(APIresponse['faces']);
+
+        if (APIresponse['faces'].length === 0) {
+
+          resultCanvas.fillStyle = '#FF0000';
+          resultCanvas.font = '30px Arial';
+          resultCanvas.fillText('no (pretty) face found', 50, 50);
+
+        } else {
+
+          resultCanvas.strokeStyle = '#00FF00';
+          resultCanvas.fillStyle = '#00FF00';
+          resultCanvas.font = '30px Arial';
+          resultCanvas.fillText('some (pretty) face found', 50, 50);
+
+          for (const face of APIresponse['faces'])  {
+
+            // Rectangle
+            resultCanvas.strokeRect(
+              face.faceRectangle.left,
+              face.faceRectangle.top,
+              face.faceRectangle.width,
+              face.faceRectangle.height
+            );
+
+            // Age
+            resultCanvas.fillText(
+              face.age,
+              face.faceRectangle.left + face.faceRectangle.width + 5,
+              face.faceRectangle.top + 15
+            );
+
+            // Gender
+            resultCanvas.fillText(
+              face.gender,
+              face.faceRectangle.left + face.faceRectangle.width + 5,
+              face.faceRectangle.top + 55
+            );
+          }
+        }
       });
     });
   }
