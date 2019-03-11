@@ -29,6 +29,28 @@ export class RTCService {
         this.logRTCStatus();
       }
     });
+
+    // TODO move to better place
+    this.polyFillToBlob();
+  }
+
+  private polyFillToBlob() {
+
+    if (!HTMLCanvasElement.prototype.toBlob) {
+      Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+        value: function (callback, type, quality) {
+          const canvas = this;
+          setTimeout(function() {
+            const binStr = atob( canvas.toDataURL(type, quality).split(',')[1] );
+            const arr = new Uint8Array(binStr.length);
+            for (let i = 0; i < binStr.length; i++ ) {
+               arr[i] = binStr.charCodeAt(i);
+            }
+            callback( new Blob( [arr], {type: type || 'image/png'} ) );
+          });
+        }
+     });
+   }
   }
 
   getNumberOfAvailableCameras() {
