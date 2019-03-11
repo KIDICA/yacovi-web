@@ -16,7 +16,8 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {YacoviAlertModule} from '@app/core/modules';
 
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
 
 @NgModule({
   imports: [
@@ -25,6 +26,10 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
     NgxSpinnerModule,
     YacoviAlertModule,
     TranslateModule.forRoot({
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      },
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,

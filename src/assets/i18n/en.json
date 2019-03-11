@@ -1,4 +1,7 @@
 {
+  "spinner": {
+    "initText": "Initializing services and camera ..."
+  },
   "views": {
     "login": {
       "content": {
@@ -10,6 +13,13 @@
       }
     },
     "home": {
+      "messages": {
+        "applicationSuccessfullyInitialized": "Application successfully initialized!",
+        "permissionDeniedError": "Permission denied. Please refresh and give permission."
+      },
+      "canvas": {
+        "resultText": "{numberOfFaces, plural, =0{No} one{One} other{Some}} (pretty) {numberOfFaces, plural, =0{face} one{face} other{faces}} found"
+      },
       "buttons": {
         "signOut": "Sign out"
       }

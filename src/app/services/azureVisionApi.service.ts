@@ -14,14 +14,16 @@ export class AzureVisionApiService {
     }
 
     detectFaces(blobData) {
-        const uriBase = environment.azure.cognitiveServices.APIurl;
+        const uriBase = environment.azure.cognitiveServices.apiUrl;
         const headers = {
             [HTTP_HEADER_CONTENT_TYPE_NAME]: [HTTP_HEADER_CONTENT_TYPE_VALUE_APPLICATION_OCTECT_STREAM],
             [HTTP_HEADER_AZ_CS_SUBSCRIPTION_API_KEY_NAME]: this.configService.getAzCognitiveServiceKey()
         };
 
-        const httpParams = new HttpParams().set('visualFeatures', 'Faces')
-                                       .set('language', 'en').set('details', '');
+        const httpParams = new HttpParams()
+                            .set('visualFeatures', 'Faces')
+                            .set('language', 'en')
+                            .set('details', '');
 
         return this.http.post(uriBase, blobData, {
             'headers': new HttpHeaders(headers),

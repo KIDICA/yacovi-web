@@ -1,7 +1,7 @@
 ﻿import {ElementRef, Injectable} from '@angular/core';
 
-import {environment} from '@environments/environment';
-import {YacoviAlertService} from '@app/core/modules/yacovi-alert/yacovi-alert.service';
+import { environment } from '@environments/environment';
+import { YacoviAlertService } from '@app/core/modules/yacovi-alert/yacovi-alert.service';
 import { ConfigService } from './config.service';
 import { AzureVisionApiService } from '@app/services/azureVisionApi.service';
 
@@ -11,9 +11,11 @@ export class RTCService {
 
   private DetectRTC: any = window['DetectRTC'];
 
-  constructor(private configService: ConfigService, private imageAnalyzing: AzureVisionApiService,
-              private alertService: YacoviAlertService) {
-    // do some WebRTC checks before creating the interface
+  constructor(  private configService: ConfigService,
+                private imageAnalyzing: AzureVisionApiService,
+                private alertService: YacoviAlertService) {
+
+     // do some WebRTC checks before creating the interface
     this.DetectRTC.load(() => {
       // do some checks
       if (this.DetectRTC.isWebRTCSupported === false) {
@@ -29,7 +31,6 @@ export class RTCService {
     });
   }
 
-
   getNumberOfAvailableCameras() {
     return this.DetectRTC.videoInputDevices.length;
   }
@@ -42,75 +43,19 @@ export class RTCService {
     }
   }
 
-  takeSnapshot(videoElem: ElementRef, canvasElem: ElementRef) {
+  takeSnapshot(videoElem: ElementRef, canvasElem: ElementRef): Promise<{}> {
+
     const video = videoElem.nativeElement;
-    const canvas = document.createElement('canvas');
+    canvasElem.nativeElement.width = video.videoWidth;
+    canvasElem.nativeElement.height = video.videoHeight;
 
-    const width = video.videoWidth;
-    const height = video.videoHeight;
+    const canvas = canvasElem.nativeElement.getContext('2d');
+    canvas.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-    canvas.width = width;
-    canvas.height = height;
-
-    const context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, width, height);
-
-    // TODO
-    canvasElem.nativeElement.width = width;
-    canvasElem.nativeElement.height = height;
-    const resultCanvas = canvasElem.nativeElement.getContext('2d');
-    resultCanvas.drawImage(video, 0, 0, width, height);
-
-    this.getCanvasBlob(canvas).then(sentPicture => {
-
-      this.imageAnalyzing.detectFaces(sentPicture).subscribe(APIresponse => {
-
-        console.log(APIresponse);
-        console.log(APIresponse['faces']);
-
-        if (APIresponse['faces'].length === 0) {
-
-          resultCanvas.fillStyle = '#FF0000';
-          resultCanvas.font = '30px Arial';
-          resultCanvas.fillText('no (pretty) face found', 50, 50);
-
-        } else {
-
-          resultCanvas.strokeStyle = '#00FF00';
-          resultCanvas.fillStyle = '#00FF00';
-          resultCanvas.font = '30px Arial';
-          resultCanvas.fillText('some (pretty) face found', 50, 50);
-
-          for (const face of APIresponse['faces'])  {
-
-            // Rectangle
-            resultCanvas.strokeRect(
-              face.faceRectangle.left,
-              face.faceRectangle.top,
-              face.faceRectangle.width,
-              face.faceRectangle.height
-            );
-
-            // Age
-            resultCanvas.fillText(
-              face.age,
-              face.faceRectangle.left + face.faceRectangle.width + 5,
-              face.faceRectangle.top + 15
-            );
-
-            // Gender
-            resultCanvas.fillText(
-              face.gender,
-              face.faceRectangle.left + face.faceRectangle.width + 5,
-              face.faceRectangle.top + 55
-            );
-          }
-        }
-      });
-    });
+    return this.getCanvasBlob(canvasElem.nativeElement);
   }
 
-  private getCanvasBlob(canvas) {
+  private getCanvasBlob(canvas: HTMLCanvasElement) {
     return new Promise(function (resolve, reject) {
       canvas.toBlob(function (blob) {
         resolve(blob);
@@ -119,16 +64,16 @@ export class RTCService {
   }
 
   private logRTCStatus() {
-    console.log(`RTC Debug info:
- OS:                   ${this.DetectRTC.osName} ${this.DetectRTC.osVersion}
- browser:              ${this.DetectRTC.browser.fullVersion} ${this.DetectRTC.browser.name}
- is Mobile Device:     ${this.DetectRTC.isMobileDevice}
- has webcam:           ${this.DetectRTC.hasWebcam}
- has permission:       ${this.DetectRTC.isWebsiteHasWebcamPermission}
- getUserMedia Support: ${this.DetectRTC.isGetUserMediaSupported}
- isWebRTC Supported:   ${this.DetectRTC.isWebRTCSupported}
- WebAudio Supported:   ${this.DetectRTC.isAudioContextSupported}`
+    console.log(
+      `RTC Debug info:
+      OS:                   ${this.DetectRTC.osName} ${this.DetectRTC.osVersion}
+      browser:              ${this.DetectRTC.browser.fullVersion} ${this.DetectRTC.browser.name}
+      is Mobile Device:     ${this.DetectRTC.isMobileDevice}
+      has webcam:           ${this.DetectRTC.hasWebcam}
+      has permission:       ${this.DetectRTC.isWebsiteHasWebcamPermission}
+      getUserMedia Support: ${this.DetectRTC.isGetUserMediaSupported}
+      isWebRTC Supported:   ${this.DetectRTC.isWebRTCSupported}
+      WebAudio Supported:   ${this.DetectRTC.isAudioContextSupported}`
     );
   }
-
 }

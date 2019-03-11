@@ -2,7 +2,19 @@
   margin: 0;
 }
 
-video.webcam-stream{
+canvas.result-canvas {
+  position: relative;
+  display: block;
   width: 100%;
   height: auto;
+}
+
+.webcam-row {
+  position: absolute;
+  bottom: 0;
+}
+video.webcam-stream{
+  width: 240px;
+  display: block;
+  border: 2px solid #FFFFFF;
 }

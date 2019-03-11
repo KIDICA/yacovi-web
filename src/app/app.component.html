@@ -9,7 +9,7 @@
   color = "#ae0055"
   type = "ball-clip-rotate-pulse"
   fullScreen = "true">
-  <p> Initializing services and camera ... </p>
+  <p [innerHTML]="'spinner.initText' | translate"></p>
 </ngx-spinner>
 <!-- main app container -->
 <router-outlet></router-outlet>
