@@ -81,7 +81,7 @@ export class RTCService {
     return new Promise(function (resolve, reject) {
       canvas.toBlob(function (blob) {
         resolve(blob);
-      }, 'image/jpeg');
+      }, 'image/png');
     });
   }
 
