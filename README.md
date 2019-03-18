@@ -1,18 +1,18 @@
   <h1>YaCoVi</h1>
   <p>
-    <a href="https://travis-ci.com/KIDICA/yacovi-web" name="YaCoVi Web Builds" target="_blank">
-      <img src="https://travis-ci.com/KIDICA/yacovi-web.svg?branch=master" alt="TravisCi Build Status" />
+    <a href="https://travis-ci.com/KIDICA/yacovi" name="YaCoVi Web Builds" target="_blank">
+      <img src="https://travis-ci.com/KIDICA/yacovi.svg?branch=master" alt="TravisCi Build Status" />
     </a>
   </p>
   <p>
     "<b>Ya</b>nnicks <b>Co</b>mputer <b>Vi</b>sion" or short YaCovi is a small Web Application to experiment with cloud-based Computer Vision API's like <a href='https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home' target='_blank'>Azure Cognitive Services</a> or <a href='https://cloud.google.com/vision/docs/' target='_blank'> Google Cloud Vision</a>.
     <br>
     <br>
-    <a href="https://kidica.github.io/yacovi-web" target="_blank">LIVE DEMO</a>
+    <a href="https://kidica.github.io/yacovi" target="_blank">LIVE DEMO</a>
     <br>
-    <a href="https://github.com/KIDICA/yacovi-web/issues/new">Report bug</a>
+    <a href="https://github.com/KIDICA/yacovi/issues/new">Report bug</a>
     <br>
-    <a href="https://github.com/KIDICA/yacovi-web/issues/new">Request feature</a>
+    <a href="https://github.com/KIDICA/yacovi/issues/new">Request feature</a>
   </p>
 </p>
 
@@ -65,4 +65,4 @@ We use Travis CI to run this tasks in order:
 
 ## Copyright and license
 
-Code and documentation copyright 2018 the authors. Code released under the [MIT License](https://github.com/KIDICA/yacovi-web/blob/master/LICENSE).
+Code and documentation copyright 2018 the authors. Code released under the [MIT License](https://github.com/KIDICA/yacovi/blob/master/LICENSE).

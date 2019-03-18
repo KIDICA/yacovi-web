@@ -11,12 +11,12 @@ install:
 
 script:
   - npm run lint
-  - ng build --prod --base-href /yacovi-web/
-  - mv dist/yacovi-web/index.html dist/yacovi-web/404.html
+  - ng build --prod --base-href /yacovi/
+  - mv dist/yacovi/index.html dist/yacovi/404.html
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist/yacovi-web
+  local_dir: dist/yacovi
   on:
     branch: master
